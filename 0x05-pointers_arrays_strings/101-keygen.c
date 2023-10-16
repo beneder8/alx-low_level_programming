@@ -19,10 +19,10 @@ int main(void)
 
     for (i = 0; i < 100; i++)
     {
-        pass[i] = rand() % 94 + 33;  // Ensure values are in the printable ASCII range
+        pass[i] = rand() % 94 + 33;  /* Ensure values are in the printable ASCII range */
         sum += pass[i];
         putchar(pass[i]);
-        if ((2772 - sum) < 94 + 33)  // Adjusted comparison for printable ASCII range
+        if ((2772 - sum) < 94 + 33)  /* Adjusted comparison for printable ASCII range */
         {
             n = 2772 - sum;
             sum += n;
