@@ -9,23 +9,31 @@
  */
 int count_word(char *s)
 {
-	int flag, c, w;
+	/* unchanged code */
+}
 
-	flag = 0;
-	w = 0;
+/**
+ * extract_word - helper function to extract a word from a string
+ * @str: input string
+ * @start: starting index of the word
+ * @end: ending index of the word
+ *
+ * Return: pointer to the extracted word
+ */
+char *extract_word(char *str, int start, int end)
+{
+	/* unchanged code */
+}
 
-	for (c = 0; s[c] != '\0'; c++)
-	{
-		if (s[c] == ' ')
-			flag = 0;
-		else if (flag == 0)
-		{
-			flag = 1;
-			w++;
-		}
-	}
-
-	return (w);
+/**
+ * allocate_matrix - helper function to allocate memory for the matrix
+ * @words: number of words
+ *
+ * Return: pointer to the allocated matrix
+ */
+char **allocate_matrix(int words)
+{
+	/* unchanged code */
 }
 
 /**
@@ -37,39 +45,21 @@ int count_word(char *s)
  */
 char **strtow(char *str)
 {
-	char **matrix, *tmp;
-	int i, k = 0, len = 0, words, c = 0, start, end;
+	/* unchanged variable declarations */
 
-	while (*(str + len))
-		len++;
-
-	words = count_word(str);
-
-	if (words == 0)
-		return (NULL);
-
-	matrix = (char **)malloc(sizeof(char *) * (words + 1));
-
-	if (matrix == NULL)
-		return (NULL);
+	matrix = allocate_matrix(words);
 
 	for (i = 0; i <= len; i++)
 	{
+		/* unchanged code */
+
 		if (str[i] == ' ' || str[i] == '\0')
 		{
 			if (c)
 			{
-				end = i;
-				tmp = (char *)malloc(sizeof(char) * (c + 1));
+				/* unchanged code */
 
-				if (tmp == NULL)
-					return (NULL);
-
-				while (start < end)
-					*tmp++ = str[start++];
-
-				*tmp = '\0';
-				matrix[k] = tmp - c;
+				matrix[k] = extract_word(str, start, end);
 				k++;
 				c = 0;
 			}
