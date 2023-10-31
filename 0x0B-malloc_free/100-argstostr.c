@@ -1,50 +1,48 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
- * argstostr - Concatenates all the command-line arguments
+ * argstostr - Concatenates all arguments of the program into a string;
+ *             arguments are separated by a new line in the string.
+ * @ac: The number of arguments passed to the program.
+ * @av: An array of pointers to the arguments.
  *
- * @ac: Number of command-line arguments
- * @av: Array of command-line argument strings
- *
- * Return: A pointer to the concatenated string
+ * Return: If ac == 0, av == NULL, or the function fails - NULL.
+ *         Otherwise - a pointer to the new string.
  */
+
 char *argstostr(int ac, char **av)
 {
-	int i, n, r = 0, l = 0;
 	char *str;
+	int arg, byte, index, size = ac;
 
 	if (ac == 0 || av == NULL)
-		return (NULL);
-
-	/* Calculate the total length of the concatenated string */
-	for (i = 0; i < ac; i++)
 	{
-		for (n = 0; av[i][n]; n++)
-			l++;
+		return (NULL);
 	}
-	l += ac; /* Add space for newline characters */
+	for (arg = 0; arg < ac; arg++)
+	{
+		for (byte = 0; av[arg][byte]; byte++)
+		{
+			size++;
+		}
+	}
+	str = malloc(sizeof(char) * size + 1);
 
-	/* Allocate memory for the concatenated string */
-	str = malloc(sizeof(char) * l + 1);
 	if (str == NULL)
-		return (NULL);
-
-	/* Copy each character to the concatenated string */
-	for (i = 0; i < ac; i++)
 	{
-		for (n = 0; av[i][n]; n++)
-		{
-			str[r] = av[i][n];
-			r++;
-		}
-		if (i < ac - 1)
-		{
-			str[r] = '\n'; /* Add newline character, except for the last line */
-			r++;
-		}
+		return (NULL);
 	}
+	index = 0;
 
+	for (arg = 0; arg < ac; arg++)
+	{
+		for (byte = 0; av[arg][byte]; byte++)
+		{
+			str[index++] = av[arg][byte];
+		}
+		str[index++] = '\n';
+	}
+	str[size] = '\0';
 	return (str);
 }
